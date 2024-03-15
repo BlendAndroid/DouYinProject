@@ -50,6 +50,7 @@ class MCRouter extends RouterDelegate<List<RouteSettings>>
   // todo: 采用下面这种写法,navigatorKey.currentContext就不为Null,但是集成到主工程,导航就不起效果了
   // 下面这种写法是不对的,每次都会造成界面重新建立
   // final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+  // navigatorKey也是PopNavigatorRouterDelegateMixin的一个属性，用于获取当前的NavigatorState对象。
   @override
   GlobalKey<NavigatorState> get navigatorKey => GlobalKey<NavigatorState>();
 

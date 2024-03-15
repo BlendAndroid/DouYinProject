@@ -35,39 +35,40 @@ class _FriendPageState extends State<FriendPage>
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+        debugShowCheckedModeBanner: false, //去掉右上角debug标签
         home: Scaffold(
             body: Container(
-      decoration: const BoxDecoration(color: Colors.black),
-      child: Column(
-        children: <Widget>[
-          const SizedBox(height: 30),
-          Container(
-            color: Colors.black87,
-            child: TabBar(
+          decoration: const BoxDecoration(color: Colors.black),
+          child: Column(
+            children: <Widget>[
+              const SizedBox(height: 30),
+              Container(
+                color: Colors.black87,
+                child: TabBar(
+                    controller: _tabController,
+                    //指示器的颜色
+                    indicatorColor: const Color(0xffffffff),
+                    //tab背景色
+                    labelColor: const Color(0xffffffff),
+                    tabs: _tabTitles.map((title) {
+                      return Tab(
+                          child: Text(title,
+                              style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                  fontSize: 16)));
+                    }).toList()),
+              ),
+              // Expanded: 可以用于将子组件扩展以填充可用空间，以及根据可用空间的大小调整子组件的尺寸
+              Expanded(
+                  child: TabBarView(
+                // TabBarView 封装了 PageView
                 controller: _tabController,
-                //指示器的颜色
-                indicatorColor: const Color(0xffffffff),
-                //tab背景色
-                labelColor: const Color(0xffffffff),
-                tabs: _tabTitles.map((title) {
-                  return Tab(
-                      child: Text(title,
-                          style: const TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                              fontSize: 16)));
-                }).toList()),
+                children: [_buildLatestBlogList(), _buildHotBlogList()],
+              ))
+            ],
           ),
-          // Expanded: 可以用于将子组件扩展以填充可用空间，以及根据可用空间的大小调整子组件的尺寸
-          Expanded(
-              child: TabBarView(
-            // TabBarView 封装了 PageView
-            controller: _tabController,
-            children: [_buildLatestBlogList(), _buildHotBlogList()],
-          ))
-        ],
-      ),
-    )));
+        )));
   }
 
   //最新

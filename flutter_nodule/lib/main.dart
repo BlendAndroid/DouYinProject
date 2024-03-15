@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:douyin_flutter_plugin/player.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:path_provider/path_provider.dart';
@@ -9,6 +10,7 @@ import 'mc_router.dart';
 
 MCRouter router = MCRouter();
 
+// 一个Flutter引擎,只有一个main函数,所以这里的main函数是唯一的入口
 void main() {
   runApp(const MyApp());
 
@@ -47,6 +49,7 @@ class MyApp extends StatelessWidget {
 
     // GetX改造步骤：1、修改MaterialApp成GetMaterialApp
     return GetMaterialApp(
+      debugShowCheckedModeBanner: false, //去掉右上角debug标签
       title: 'Flutter Demo',
       theme: ThemeData(
         // This is the theme of your application.
